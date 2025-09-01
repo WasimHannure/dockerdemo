@@ -33,4 +33,4 @@ jobs:
                az container create -g docker --name myconatiner --image myapp:latest --ports 3000 --cpu 1 --memory 1.5 \
                --registry-login-server mydockeracrredgistry.azurecr.io \
                --registry-username mydockeracrredgistry \
-               --registry-password 0CJwQ9arGNvybK9xwq5deyogmf6RDSk2gRsPhkgved+ACRACIquA
+               --registry-password ${{secrets.password}}
