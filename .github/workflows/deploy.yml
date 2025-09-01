@@ -25,16 +25,16 @@ jobs:
             - name: Build and push the image
               run: |
                 
-                docker build -t mydockeracrredgistry.azurecr.io/myapp:v1 .
-                docker push mydockeracrredgistry.azurecr.io/myapp:v1
+                docker build -t mydockeracrredgistry.azurecr.io/myapp:latest .
+                docker push mydockeracrredgistry.azurecr.io/myapp:latest
 
             - name: deploy on container instance
               run: |
-               az container create --resource-group docker --name mycontainer  --cpu 1 --memory 1.5 \
+               az container create --resource-group docker --name mycontainer  --cpu 1 --memory 1 \
                --os-type Linux \
                --registry-login-server mydockeracrredgistry.azurecr.io \
                --registry-username ${{secrets.username}} \
                --registry-password ${{secrets.password}} \
-               --image mydockeracrredgistry.azurecr.io/myapp:v1 \
+               --image mydockeracrredgistry.azurecr.io/myapp:latest \
                --ports 3000 \
                --dns-name-label myapp-dns
