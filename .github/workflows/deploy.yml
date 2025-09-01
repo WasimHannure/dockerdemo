@@ -36,4 +36,5 @@ jobs:
                --registry-username ${{secrets.username}} \
                --registry-password ${{secrets.password}} \
                --image mydockeracrredgistry.azurecr.io/myapp:v1 \
-               --ports 3000
+               --ports 3000 \
+               --dns-name-lable myapp-dns
