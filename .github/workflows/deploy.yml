@@ -37,4 +37,3 @@ jobs:
                --registry-password ${{secrets.password}} \
                --image mydockeracrredgistry.azurecr.io/myapp:v1 \
                --ports 3000
- m
