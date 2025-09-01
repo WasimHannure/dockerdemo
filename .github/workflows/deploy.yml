@@ -30,8 +30,8 @@ jobs:
 
             - name: deploy on container instance
               run: |
-               az container create -g docker --name myconatiner --image myapp:latest --ports 3000 --cpu 1 --memory 1.5 \
-               --os-type Linux
+               az container create -g docker --name mydockeracrredgistry --image myapp:latest --ports 3000 --cpu 1 --memory 1.5 \
+               --os-type Linux \
                --registry-login-server mydockeracrredgistry.azurecr.io \
                --registry-username ${{secrets.username}} \
                --registry-password ${{secrets.password}}
