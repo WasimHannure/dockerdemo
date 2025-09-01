@@ -17,3 +17,13 @@ jobs:
               uses: azure/login@v2
               with:
                 creds: ${{secrets.AZURE_CREDENTIALS}}
+
+            - name: ACR login
+              run: |
+                az acr login --name mydockeracrredgistry
+
+            - name: Build and push the image
+              run: |
+                IMAGE_TAG = mydockeracrredgistry.azurecr.io/myapp:latest
+                docker build -t $IMAGE_TAG .
+                docker push IMAGE_TAG
