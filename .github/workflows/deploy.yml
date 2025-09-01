@@ -25,13 +25,14 @@ jobs:
             - name: Build and push the image
               run: |
                 
-                docker build -t mydockeracrredgistry.azurecr.io/myapp:{{gihub.sha}} .
-                docker push mydockeracrredgistry.azurecr.io/myapp:{{github.sha}}
+                docker build -t mydockeracrredgistry.azurecr.io/myapp:v1 .
+                docker push mydockeracrredgistry.azurecr.io/myapp:v1
 
             - name: deploy on container instance
               run: |
-               az container create -g docker --name mydockeracrredgistry --image myapp:{{github.sha}} --ports 3000 --cpu 1 --memory 1.5 \
+               az container create -g docker --name mycontainer --ports 3000 --cpu 1 --memory 1.5 \
                --os-type Linux \
                --registry-login-server mydockeracrredgistry.azurecr.io \
                --registry-username ${{secrets.username}} \
-               --registry-password ${{secrets.password}}
+               --registry-password ${{secrets.password}} \
+               --image myapp:v1
