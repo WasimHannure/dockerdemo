@@ -32,8 +32,9 @@ jobs:
               uses: 'azure/aci-deploy@v1'
               with:
                   resource-group: docker
-                  dns-name-label: testmyappdev
+                  dns-name-label: myapp
                   image: mydockeracrredgistry.azurecr.io/myapp:latest
+                  ports: 3000
                   cpu: 1
                   memory: 1
                   registry-username: ${{ secrets.username }}
