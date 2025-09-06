@@ -28,13 +28,15 @@ jobs:
                 docker build -t mydockeracrredgistry.azurecr.io/myapp:latest .
                 docker push mydockeracrredgistry.azurecr.io/myapp:latest
 
-            - name: deploy on container instance
-              run: |
-               az container create --resource-group docker --name mycontainer  --cpu 1 --memory 1.5 \
-               --os-type Linux \
-               --registry-login-server mydockeracrredgistry.azurecr.io \
-               --registry-username ${{secrets.username}} \
-               --registry-password ${{secrets.password}} \
-               --image mydockeracrredgistry.azurecr.io/myapp:latest \
-               --ports 3000 \
-               --dns-name-label myapp-dns
+            - name: 'Deploy to Azure Container Instances'
+              uses: 'azure/aci-deploy@v1'
+              with:
+                  resource-group: docker
+                  dns-name-label: testmyappdev
+                  image: mydockeracrredgistry.azurecr.io/myapp:latest
+                  cpu: 1
+                  memory: 1
+                  registry-username: ${{ secrets.username }}
+                  registry-password: ${{ secrets.password }}
+                  name: helloworlddev
+                  location: 'westus'
