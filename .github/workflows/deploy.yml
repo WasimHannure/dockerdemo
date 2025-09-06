@@ -39,5 +39,5 @@ jobs:
                   memory: 1
                   registry-username: ${{ secrets.username }}
                   registry-password: ${{ secrets.password }}
-                  name: helloworlddev
+                  name: containerworld
                   location: 'westus'
